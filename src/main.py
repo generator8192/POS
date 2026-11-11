@@ -1,18 +1,19 @@
 import sys
-import time
-import os
-import subprocess
+from pathlib import Path
 
-if os.name != "posix":
-    print("i dont like your system")
-    sys.exit()
-
-#print(os.name)
-#print(os.getlogin())
-#print(os.uname())
+root = Path(".")
 
 while True:
-    command = input("> ")
+    command = input("> ").strip()
+    if not command:
+        continue
     if command == "exit":
         sys.exit()
-    
+    try:
+        target = next(root.rglob(f"{command}.epp"))
+        load(target)
+    except StopIteration:
+        print("bad command")
+    except Exception:
+        print("crash")
+
