@@ -28,10 +28,14 @@ def load(filepath: Path):
     code = marshal.loads(rbytes)
     exec(code, {"__name__": "__main__", "load": load})
 
-try:
-    mainfile = next(root.rglob("main.epp"))
-    load(mainfile)
-except StopIteration:
-    print("main.epp not found")
-    sys.exit()
+if len(sys.argv) > 1:
+    sys.argv = sys.argv[1:]
+    load(Path(sys.argv[0]))
+else:
+    try:
+        mainfile = next(root.rglob("main.epp"))
+        load(mainfile)
+    except StopIteration:
+        print("main.epp not found")
+        sys.exit()
 
