@@ -1,5 +1,7 @@
 # POS
 POS (Python Operating System)
 
-python3 start.py
-to start the operating system
+It's a shell made in python
+
+`` python3 start.py
+to start the shell
