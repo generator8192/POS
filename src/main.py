@@ -30,6 +30,6 @@ while True:
         subprocess.run([sys.executable, str(loader), str(target)] + args)
     except StopIteration:
         print("bad command")
-    except Exception:
-        print("crash")
+    except Exception as errorka:
+        print(f"crash: {errorka}")
 
